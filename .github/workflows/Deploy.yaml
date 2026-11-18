@@ -29,14 +29,13 @@ jobs:
       with:
         credentials_json: ${{ secrets.GKE_SA_KEY }}
 
-   - name: Get GKE credentials
+    - name: Get GKE credentials
       uses: 'google-github-actions/get-gke-credentials@v3'
       with:
         cluster_name: 'cluster-1'
         location: 'us-central1'
-        project_id: 'premium-cipher-512121-m2'
+        project_id: 'kubernetes-5121007575'
 
-   
     - name: Deploy to GKE
       run: |
         helm upgrade --install flask ./flask-app --set deployment.image=${{ inputs.docker_image }} --set deployment.tag=${{ inputs.image_tag }}
